@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<!-- 设置对象关系映射 -->
+    <session-factory>
+    	<mapping class="com.zc.bookstore.admin.admin.domain.Admin"/>
+    	<mapping class="com.zc.bookstore.book.domain.Book"/>
+    	<mapping class="com.zc.bookstore.cart.domain.CartItem"/>
+    	<mapping class="com.zc.bookstore.category.domain.Category"/>
+    	<mapping class="com.zc.bookstore.order.domain.Order"/>
+    	<mapping class="com.zc.bookstore.order.domain.OrderItem"/>
+    	<mapping class="com.zc.bookstore.user.domain.User"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+<!-- 	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest" 
+		name="requestParser" class="com.zc.bookstore.filter.RequestParseWrapper"
+		scope="default" optional="true"/>
+
+	<constant name= "struts.multipart.handler" value= "requestParser" /> -->
+	
+	<!-- 与Book有关-->
+    <package name="book" namespace="/book" extends="struts-default">
+    	<action name="bookAction_findByCategory" class="bookAction" method="findByCategory">
+    		<result name="success">/jsps/book/list.jsp</result>
+    	</action>
+    	
+    	<action name="bookAction_findByAuthor" class="bookAction" method="findByAuthor">
+    		<result name="success">/jsps/book/list.jsp</result>
+    	</action>
+    	
+    	<action name="bookAction_findByPress" class="bookAction" method="findByPress">
+    		<result name="success">/jsps/book/list.jsp</result>
+    	</action>
+    	
+    	<action name="bookAction_findByBname" class="bookAction" method="findByBname">
+    		<result name="success">/jsps/book/list.jsp</result>
+    	</action>
+    	
+    	<action name="bookAction_findByCombination" class="bookAction" method="findByCombination">
+    		<result name="success">/jsps/book/list.jsp</result>
+    	</action>
+    	
+    	<action name="bookAction_load" class="bookAction" method="load">
+    		<result name="success">/jsps/book/desc.jsp</result>
+    	</action>
+    </package>
+
+	<!-- 与CateGory有关 -->
+	<package name="category" namespace="/category" extends="struts-default">
+		<action name="categoryAction" class="categoryAction" method="findAll">
+			<result name="success">/jsps/left.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 与Cart有关 -->
+	<package name="cart" namespace="/cart" extends="struts-default">
+		<action name="cartItemAction_myCart" class="cartItemAction" method="myCart">
+			<result name="success">/jsps/cart/list.jsp</result>
+		</action>
+		
+		<action name="cartItemAction_add" class="cartItemAction" method="add">
+			<result name="success">/jsps/cart/list.jsp</result>
+		</action>
+		
+		<action name="cartItemAction_delete" class="cartItemAction" method="delete">
+			<result name="success">/jsps/cart/list.jsp</result>
+		</action>
+		
+		<action name="cartItemAction_judgeAddOrUpdateQuantity" class="cartItemAction" method="judgeAddOrUpdateQuantity">
+			<result name="success">/jsps/cart/list.jsp</result>
+		</action>
+		
+		<action name="cartItemAction_loadCartItems" class="cartItemAction" method="loadCartItems">
+			<result name="success">/jsps/cart/showitem.jsp</result>
+		</action>
+	</package>
+	
+	<!--与Json 和Ajax有关的Action
+	<package name="json" namespace="/json" extends="json-default">
+		<action name="cartItemAction" class="cartItemAction" method="myCart">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="root">jsonResult</param>
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+		
+		<action name="adminCategoryAction_childrenForAjax" class="adminCategoryAction" method="childrenForAjax">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="root">jsonResult</param>
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+	</package> -->
+	
+	<!-- 与Order有关 -->
+	<package name="order" namespace="/order" extends="struts-default">
+		<action name="orderAction_create" class="orderAction" method="create">
+			<result name="success">/jsps/order/ordersucc.jsp</result>
+		</action>
+		
+		<action name="orderAction_myOrders" class="orderAction" method="myOrders">
+			<result name="success">/jsps/order/list.jsp</result>
+		</action>
+		
+		<action name="orderAction_load" class="orderAction" method="load">
+			<result name="success">/jsps/order/desc.jsp</result>
+		</action>
+		
+		<action name="orderAction_cancel" class="orderAction" method="cancel">
+			<result name="success">/jsps/msg.jsp</result>
+		</action>
+		
+		<action name="orderAction_confirm" class="orderAction" method="confirm">
+			<result name="success">/jsps/msg.jsp</result>
+		</action>
+		
+		<action name="orderAction_prepareForPayment" class="orderAction" method="prepareForPayment">
+			<result name="success">/jsps/order/pay.jsp</result>
+		</action>
+		
+		<action name="orderAction_payment" class="orderAction" method="payment">
+			<result name="success">/WEB-INF/jsp/sendpay.jsp</result>
+		</action>
+		
+		<action name="orderAction_back" class="orderAction" method="back">
+			<result name="success">/jsps/msg.jsp</result>
+		</action>
+		
+		<action name="orderAction_prepareForPayment" class="orderAction" method="prepareForPayment">
+			<result name="success">/jsps/order/pay.jsp</result>
+		</action>
+		
+	</package>
+	
+	<!-- 与User有关 -->
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="userAction_regist" class="userAction" method="regist">
+			<result name="success">/jsps/msg.jsp</result>
+			<result name="error">/jsps/user/regist.jsp</result>
+		</action>
+		
+		<action name="userAction_activation" class="userAction" method="activation">
+			<result name="successorerror">/jsps/msg.jsp</result>
+		</action>
+		
+		<action name="userAction_login" class="userAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="error">/jsps/user/login.jsp</result>
+		</action>
+		
+		<action name="userAction_quit" class="userAction" method="quit">
+			<result name="success">/jsps/user/login.jsp</result>
+		</action>
+		
+		<action name="userAction_updatePassword" class="userAction" method="updatePassword">
+			<result name="success">/jsps/msg.jsp</result>
+		</action>
+		
+		<!-- 与异步校验有关的action配置 -->
+		<action name="userAction_validateLoginname" class="userAction" method="validateLoginname"/>
+		
+		<action name="userAction_validateVerifyCode" class="userAction" method="validateVerifyCode"/>
+	</package>
+	
+	<!-- 验证码 -->
+	<package name="verifyCode" namespace="/verifyCode" extends="struts-default">
+		<action name="verifyCodeAction" class="com.zc.bookstore.action.VerifyCodeAction">
+			<!-- <result name="success">/jsps/user/login.jsp</result> -->
+		</action>
+	</package>
+	
+	<!-- 与Admin有关 -->
+	<package name="admin" namespace="/admin" extends="struts-default">
+		<action name="adminAction_login" class="adminAction" method="login">
+			<result name="success" type="redirect">/adminjsps/admin/index.jsp</result>
+			<result name="error">/adminjsps/login.jsp</result>
+		</action>
+		
+		<action name="adminAction_quit" class="adminAction" method="quit">
+			<result name="success" type="redirect">/adminjsps/login.jsp</result>
+		</action>
+		
+		<action name="adminBookAction_*" class="adminBookAction"  method="{1}">
+			<result name="{1}_success">/adminjsps/admin/book/list.jsp</result>
+		</action>
+		
+		<action name="adminBookAction_load" class="adminBookAction"  method="load">
+			<result name="success">/adminjsps/admin/book/desc.jsp</result>
+		</action>
+		
+		<action name="adminBookAction_edit" class="adminBookAction" method="edit">
+			<result name="success">/adminjsps/msg.jsp</result>
+		</action>
+		
+		<action name="adminBookAction_delete" class="adminBookAction" method="delete">
+			<result name="success">/adminjsps/msg.jsp</result>
+		</action>
+		
+		<action name="adminBookActionaddPre" class="adminBookAction" method="addPre">
+			<result name="success">/adminjsps/admin/book/add.jsp</result>
+		</action>
+		
+		<action name="adminAddBookAction_addBook" class="adminAddBookAction" method="addBook">
+			<result name="success">/adminjsps/msg.jsp</result>
+			<result name="error">/adminjsps/admin/book/add.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_findAllForBook" class="adminCategoryAction" method="findAllForBook">
+			<result name="success">/adminjsps/admin/book/left.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_findAll" class="adminCategoryAction" method="findAll">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_addOneLevel" class="adminCategoryAction" method="addOneLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_addTwoLevelPre" class="adminCategoryAction" method="addTwoLevelPre">
+			<result name="success">/adminjsps/admin/category/add2.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_addTwoLevel" class="adminCategoryAction" method="addTwoLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_editOneLevelPre" class="adminCategoryAction" method="editOneLevelPre">
+			<result name="success">/adminjsps/admin/category/edit.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_editOneLevel" class="adminCategoryAction" method="editOneLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_editTwoLevelPre" class="adminCategoryAction" method="editTwoLevelPre">
+			<result name="success">/adminjsps/admin/category/edit2.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_editTwoLevel" class="adminCategoryAction" method="editTwoLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_deleteOneLevel" class="adminCategoryAction" method="deleteOneLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_deleteTwoLevel" class="adminCategoryAction" method="deleteTwoLevel">
+			<result name="success">/adminjsps/admin/category/list.jsp</result>
+		</action>
+		
+		<action name="adminCategoryAction_childrenForAjax" class="adminCategoryAction" method="childrenForAjax"/>
+		
+		<action name="adminOrderAction_findAll" class="adminOrderAction" method="findAll">
+			<result name="success">/adminjsps/admin/order/list.jsp</result>
+		</action>
+		
+		<action name="adminOrderAction_findByStatus" class="adminOrderAction" method="findByStatus">
+			<result name="success">/adminjsps/admin/order/list.jsp</result>
+		</action>
+		
+		<action name="adminOrderAction_load" class="adminOrderAction" method="load">
+			<result name="success">/adminjsps/admin/order/desc.jsp</result>
+		</action>
+		
+		<action name="adminOrderAction_cancel" class="adminOrderAction" method="cancel">
+			<result name="success">/adminjsps/admin/order/desc.jsp</result>
+		</action>
+		
+		<action name="adminOrderAction_deliverl" class="adminOrderAction" method="deliver">
+			<result name="success">/adminjsps/admin/order/desc.jsp</result>
+		</action>
+	</package>
+</struts>
